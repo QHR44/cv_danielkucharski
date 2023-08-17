@@ -1,0 +1,19 @@
+name: Deploy to FTP
+on: 
+  push:
+    branches:
+      -main
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v3
+    - name: Upload files
+      uses: SamKirkland/FTP-Deploy_Action@v4.3.4
+      with: 
+        server: s31.mydevil.net
+        username: ${{secrets.username_ftp}}
+        password: ${{secrets.password_ftp}}
+    
